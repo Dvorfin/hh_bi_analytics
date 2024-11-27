@@ -1,0 +1,28 @@
+version: '3.8'
+
+services:
+  nifi-mai:
+    container_name: nifi-mai
+    image: apache/nifi:latest
+    depends_on:
+      - postgres
+    ports:
+      - "8443:8443"
+    volumes:
+      - nifi-data:/opt/nifi/nifi-current/data
+   
+  postgres:
+    container_name: postgres
+    image: postgres:latest
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_HOST_AUTH_METHOD: trust
+      POSTGRES_DB: nifi-db
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+   
+volumes:
+  nifi-data:
+  postgres_data:

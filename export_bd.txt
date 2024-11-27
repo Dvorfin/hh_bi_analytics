@@ -1,0 +1,4 @@
+docker exec -it your_container_name bash
+pg_dump -U your_user your_database > /tmp/your_dump_file.sql
+docker cp your_container_name:/tmp/your_dump_file.sql /path/on/host/your_dump_file.sql
+
